@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maison à Vendre</title>
+    <meta name="description" content="Maison à vendre à Surgères, propriété d'exception de 1933. Contactez-nous pour plus d'informations.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            
+            <nav class="nav">
+                <a href="#heroCarousel" class="nav-link">Accueil</a>
+                <a href="#propertyDetails" class="nav-link">Propriété</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="header-contact">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i data-lucide="phone"></i>
+                        <span>06 72 15 27 25</span>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="mail"></i>
+                        <span>nbloc10@gmail.com</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="scrollToContact()">Nous contacter</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Carousel -->
+        <section class="hero-carousel" id="heroCarousel">
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide active">
+                        <img src="img/maison.jpeg" alt="Extérieur de la maison">
+                        <div class="carousel-overlay"></div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="img/salon.jpeg" alt="Salon">
+                        <div class="carousel-overlay"></div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="img/cinema.jpeg" alt="salon cinéma">
+                        <div class="carousel-overlay"></div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="img/chambre.jpeg" alt="Chambre">
+                        <div class="carousel-overlay"></div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="img/jardin.jpeg" alt="Jardin et espace extérieur">
+                        <div class="carousel-overlay"></div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="img/etage.jpeg" alt="etage">
+                        <div class="carousel-overlay"></div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="img/chambre3.jpeg" alt="Chambre 3">
+                        <div class="carousel-overlay"></div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="img/sous-sol.jpg" alt="Sous-sol aménagé">
+                        <div class="carousel-overlay"></div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="img/chambre2.jpeg" alt="Chambre 2">
+                        <div class="carousel-overlay"></div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="img/salon-bas.jpg" alt="Salon bas">
+                        <div class="carousel-overlay"></div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn carousel-prev" onclick="prevSlide()">
+                    <i data-lucide="chevron-left"></i>
+                </button>
+                <button class="carousel-btn carousel-next" onclick="nextSlide()">
+                    <i data-lucide="chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Maison d'Exception à Vendre</h1>
+                    <p>Découvrez cette magnifique propriété Néo - Bretonne alliant élégance et confort</p>
+                    <div class="hero-badges">
+                        <span class="hero-badge">Prix: 335 000 €</span>
+                        <span class="hero-badge">521 m² dont 170 m² habitables • 5 pièces</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Property Details -->
+        <section class="property-details" id="propertyDetails">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Présentation de la Propriété</h2>
+                    <p>Maison de famille, de caractère de 1933, style Néo - Bretonne – Surgères (17700)</p>
+                </div>
+
+                <div class="property-content">
+                    <div class="property-features">
+                        <h3>Caractéristiques principales</h3>
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <div>
+                                    <i data-lucide="home"></i>
+                                </div>
+                                <div class="feature-info">
+                                    <p class="feature-label">Surface</p>
+                                    <p class="feature-value">170 m²</p>
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <div>
+                                    <i data-lucide="bed"></i>
+                                </div>
+                                <div class="feature-info">
+                                    <p class="feature-label">Chambres</p>
+                                    <p class="feature-value">3</p>
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <div>
+                                    <i data-lucide="bath"></i>
+                                </div>
+                                <div class="feature-info">
+                                    <p class="feature-label">Salles d'eau</p>
+                                    <p class="feature-value">3</p>
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <div>
+                                    <i data-lucide="calendar"></i>
+                                </div>
+                                <div class="feature-info">
+                                    <p class="feature-label">Année</p>
+                                    <p class="feature-value">1933</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="property-location">
+                            <div>
+                                <h3>📍 Localisation recherchée :</h3>
+                                <p>Surgères, ville dynamique avec toutes commodités (commerces, écoles, services) et gare TGV reliant Paris en direct en 2 h 30. Le centre de La Rochelle en 20 mn et Niort en 25 mn.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="property-description">
+                        <h3>Description</h3>
+                        <div class="description-text">
+                            <p>Située à deux pas du centre de Surgères et de sa gare TGV, cette élégante maison de 1933 offre tout le charme de l’architecture des années 30 allié au confort moderne. Édifiée sur un terrain clos et arboré de 521 m², elle développe environ 170 m² habitables</p>
+                            <p>• Rez-de-chaussée : entrée, salon chaleureux, salle à manger lumineuse ouverte sur une cuisine semi-ouverte, donnant accès à une terrasse suspendue orientée plein sud. Une chambre et une salle d’eau, WC, complètent ce niveau, idéale pour une vie de plain-pied. </p>
+                            <p>• Étage : deux chambres de charme, salle d’eau WC, grand dressing dans grande pièce palière faisant, actuellement, office de salle de jeux et de musique.</p>
+                            <p>• Sous-sol total aménagé : véritable appartement d’été avec accès indépendant, pratique pour recevoir famille et amis ou pour un projet locatif saisonnier. Un atelier et une cave complète ce niveau.</p>
+                        </div>
+
+                        <h4>information supplémentaires</h4>
+                        <div class="amenities">
+                            <span class="amenity-badge">• D.P.E. : Classe « C »</span>
+                            <span class="amenity-badge">• 3 salles d’eau modernes et WC à chaque niveau,</span>
+                            <span class="amenity-badge">• Jardin intime et facile d’entretien,</span>
+                            <span class="amenity-badge">• Charme préservé de l’architecture régionaliste des années 30.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+        <div class="contact-content">
+            <div class="contact-card">
+            <div class="contact-card-header">
+                <h3>Situation de la maison</h3>
+                <p>Découvrez l’emplacement de la maison et les points d’intérêt à proximité (gare, écoles, commerces...).</p>
+            </div>
+            <div class="contact-details">
+                <iframe
+                class="map-frame"
+                src="https://www.google.com/maps?q=12+Rue+Julia+et+Maurice+Marcou,+17700+Surgères,+France&output=embed"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+            </div>
+        </div>
+        </section>
+
+
+        <!-- Contact Form -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Contactez-nous</h2>
+                    <p>Intéressé par cette propriété ? Contactez nous pour organiser une visite ou obtenir plus d'informations.</p>
+                </div>
+
+
+                    <div class="contact-form">
+                        <div class="form-card">
+                            <div class="form-header">
+                                <h3>Demande d'information</h3>
+                                <p>Remplissez ce formulaire et nous vous recontacterons rapidement</p>
+                            </div>
+                            <form id="contactForm" onsubmit="handleSubmit(event)">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <div class="input-wrapper">
+                                            <i data-lucide="user"></i>
+                                            <input type="text" id="firstName" name="firstName" placeholder="Votre prénom" required>
+                                        </div>
+                                        <span class="error-message" id="firstNameError"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-wrapper">
+                                            <i data-lucide="user"></i>
+                                            <input type="text" id="lastName" name="lastName" placeholder="Votre nom" required>
+                                        </div>
+                                        <span class="error-message" id="lastNameError"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-wrapper">
+                                        <i data-lucide="mail"></i>
+                                        <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+                                    </div>
+                                    <span class="error-message" id="emailError"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-wrapper">
+                                        <i data-lucide="phone"></i>
+                                        <input type="tel" id="phone" name="phone" placeholder="01 23 45 67 89" required>
+                                    </div>
+                                    <span class="error-message" id="phoneError"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-wrapper">
+                                        <i data-lucide="calendar"></i>
+                                        <label for="preferredDate">Date souhaitée pour la visite *</label>
+                                        <input type="date" id="preferredDate" name="preferredDate" required>
+                                    </div>
+                                    <span class="error-message" id="dateError"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="textarea-wrapper">
+                                        <i data-lucide="message-square"></i>
+                                        <label for="message">Message *</label>
+                                        <textarea id="message" name="message" placeholder="Votre message ou questions supplémentaires..." rows="4"></textarea>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+                                    Envoyer ma demande
+                                </button>
+
+                                <p class="form-disclaimer">
+                                    En soumettant ce formulaire, vous acceptez d'être contacté concernant cette propriété.
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+
+            <div class="footer-bottom">
+                <span>&copy; 2025 JuBdev. Tous droits réservés.</span>
+                <div class="footer-links">
+                    <a href="/mentionslegales">Mentions légales</a>
+                    <a href="/politiquedeconfidentialite">Politique de confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast container -->
+    <div id="toast-container"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
