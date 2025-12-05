@@ -83,6 +83,6 @@ Ce message a été envoyé depuis le formulaire du magnifique site de Julien.`,
 
 
 app.listen(PORT, HOST, () => {
-  console.log(`Serveur lancé sur http://${HOST}:${PORT}`);
+  console.log(`Serveur lancé sur https://${HOST}:${PORT}`);
 });
 
