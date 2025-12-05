@@ -1,4 +1,3 @@
-// app.js
 const express = require("express");
 const path = require("path");
 const dotenv = require("dotenv");
@@ -6,19 +5,20 @@ const cors = require("cors");
 const nodemailer = require("nodemailer");
 
 // Charger les variables d'environnement depuis le fichier .env
-dotenv.config();
+dotenv.config({ debug: false, override: false, path: './.env' }); // ⚡ debug=false pour ne pas spammer
 
 const app = express();
 const PORT = process.env.PORT;
 const HOST = '0.0.0.0'; 
 const MOTDEPASSEAPPLICATION = process.env.MOTDEPASSEAPPLICATION;
+
 app.use(cors());
 app.use(express.json());
 
 // Servir les fichiers statiques du dossier courant
 app.use(express.static(__dirname));
 
-// Route qui envoie un fichier HTML
+// Routes
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
@@ -31,6 +31,7 @@ app.get("/politiquedeconfidentialite", (req, res) => {
   res.sendFile(path.join(__dirname, "politiquedeconfidentialite.html"));
 });
 
+// Formulaire contact
 app.post("/api/contact", async (req, res) => {
     const { firstName, lastName, email, phone, preferredDate, message } = req.body;
     const dateObj = new Date(preferredDate);
@@ -40,23 +41,19 @@ app.post("/api/contact", async (req, res) => {
       day: "numeric",
     });
 
-
-    // Configuration de ton compte Gmail
     const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-            user: "nbloc10@gmail.com", // 🔹 ton adresse Gmail (celle qui envoie réellement)
-            pass: MOTDEPASSEAPPLICATION, // 🔹 mot de passe d'application Gmail
+            user: "nbloc10@gmail.com",
+            pass: MOTDEPASSEAPPLICATION,
         },
     });
 
-    // Détails de l'email envoyé
     const mailOptions = {
-        from: `"${firstName} ${lastName}" <${email}>`, // 🔹 l'expéditeur = celui qui a rempli le formulaire
-        to: "nbloc10@gmail.com", // 🔹 ton adresse pour recevoir les messages
+        from: `"${firstName} ${lastName}" <${email}>`,
+        to: "nbloc10@gmail.com",
         subject: "📬 Nouvelle demande de contact depuis le site vitrine",
-        text: 
-`Bonjour, 
+        text: `Bonjour, 
 Vous venez de recevoir une nouvelle demande via le formulaire du site vitrine. Voici les détails :
 
 Nom : ${firstName} ${lastName}
@@ -81,8 +78,9 @@ Ce message a été envoyé depuis le formulaire du magnifique site de Julien.`,
     }
 });
 
+// ⚡ Log unique au démarrage
+if (process.env.NODE_ENV !== 'production' || process.env.SHOW_STARTUP_LOG === 'true') {
+  console.log(`✅ Serveur démarré et accessible via https://jubdev.fr`);
+}
 
-app.listen(PORT, HOST, () => {
-  console.log(`Serveur lancé sur https://${HOST}:${PORT}`);
-});
-
+app.listen(PORT, HOST);
